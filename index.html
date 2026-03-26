@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Старости | Група 31К</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="login-screen" class="login-container">
+        <div class="card login-card">
+            <h2>🔒 Вхід у журнал</h2>
+            <p class="login-hint">Введіть секретний код старости для доступу</p>
+            <input type="password" id="secret-code" placeholder="•••••••••">
+            <button id="login-btn" class="btn-primary">Увійти</button>
+            <p id="error-msg" class="error-text">❌ Неправильний код!</p>
+        </div>
+    </div>
+
+    <div id="app-screen" class="main-layout" style="display: none;">
+        
+        <header class="app-header">
+            <div class="logo-area">
+                <h1>📋 Журнал відвідування</h1>
+                <p>Група 31К | <span id="current-user-role">Староста</span></p>
+            </div>
+            <div class="header-actions">
+                <button id="show-stats-btn" class="btn-warning">📊 Статистика пропусків</button>
+            </div>
+        </header>
+
+        <div class="card lesson-config">
+            <h2>📅 Параметри заняття</h2>
+            <div class="config-controls">
+                <input type="date" id="lesson-date" title="Дата пари">
+                <input type="text" id="lesson-subject" placeholder="Назва пари (напр. Програмування)">
+            </div>
+            <p class="config-hint">Всі відмітки будуть збережені саме на цю дату і назву пари.</p>
+        </div>
+
+        <div class="card student-management">
+            <h2>➕ Керування групою</h2>
+            <div class="add-controls">
+                <input type="text" id="new-student-name" placeholder="Ім'я та прізвище студента">
+                <button id="add-student-btn" class="btn-secondary">Додати в групу</button>
+            </div>
+        </div>
+
+        <div class="card table-card">
+            <div class="table-header">
+                <h2>🎓 Студенти</h2>
+                <button id="copy-absent-btn" class="btn-success">📋 Копіювати відсутніх</button>
+            </div>
+            <table id="students-table">
+                <thead>
+                    <tr>
+                        <th class="col-name">Студент (за алфавітом)</th>
+                        <th class="col-absent">Відсутній(ня)</th>
+                        <th class="col-actions">Дії</th>
+                    </tr>
+                </thead>
+                <tbody id="students-list">
+                    </tbody>
+            </table>
+        </div>
+
+        <footer class="app-footer">
+            <p>&copy; 2024 GroupTracker Pro | Версія 1.5</p>
+        </div>
+    </div>
+
+    <div id="stats-modal" class="modal">
+        <div class="modal-content card">
+            <div class="modal-header">
+                <h2>📊 Статистика пропусків</h2>
+                <button id="close-stats-btn" class="close-modal">&times;</button>
+            </div>
+            <div class="stats-controls">
+                <div>
+                    <label>З дати:</label>
+                    <input type="date" id="stat-start-date">
+                </div>
+                <div>
+                    <label>По дату:</label>
+                    <input type="date" id="stat-end-date">
+                </div>
+                <button id="calc-stats-btn" class="btn-primary">Показати</button>
+            </div>
+            <div class="stats-result-container">
+                <ul id="stats-result-list" class="stats-list">
+                    </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
