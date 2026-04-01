@@ -17,7 +17,7 @@
             <p class="login-hint">Введіть секретний код старости для доступу</p>
             <input type="password" id="secret-code" placeholder="•••••••••">
             <button id="login-btn" class="btn-primary">Увійти</button>
-            <p id="error-msg" class="error-text">❌ Неправильний код!</p>
+            <p id="error-msg" class="error-text" style="display: none;">❌ Неправильний код!</p>
         </div>
     </div>
 
@@ -37,7 +37,8 @@
             <h2>📅 Параметри заняття</h2>
             <div class="config-controls">
                 <input type="date" id="lesson-date" title="Дата пари">
-                <input type="text" id="lesson-subject" placeholder="Назва пари (напр. Програмування)">
+                <input type="text" id="lesson-subject" list="subjects-list-data" placeholder="Назва пари (напр. Програмування)">
+                <datalist id="subjects-list-data"></datalist>
             </div>
             <p class="config-hint">Всі відмітки будуть збережені саме на цю дату і назву пари.</p>
         </div>
@@ -53,8 +54,7 @@
         <div class="card table-card">
             <div class="table-header">
                 <h2>🎓 Студенти</h2>
-                <button id="copy-absent-btn" class="btn-success">📋 Копіювати відсутніх</button>
-            </div>
+                </div>
             <table id="students-table">
                 <thead>
                     <tr>
@@ -68,9 +68,13 @@
             </table>
         </div>
 
+        <div class="card bottom-actions">
+            <button id="copy-absent-btn" class="btn-success" style="width: 100%; padding: 15px; font-size: 16px;">📋 Скопіювати список відсутніх</button>
+        </div>
+
         <footer class="app-footer">
             <p>&copy; 2024 GroupTracker Pro | Версія 1.5</p>
-        </div>
+        </footer>
     </div>
 
     <div id="stats-modal" class="modal">
