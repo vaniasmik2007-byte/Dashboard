@@ -252,3 +252,54 @@ document.getElementById("calc-stats-btn").addEventListener("click", () => {
         }
     });
 });
+
+// === 8. АВТОЗАПОВНЕННЯ НАЗВ ПАР ===
+function syncSubjectsList() {
+    const datalist = document.getElementById('subjects-list-data');
+    if (!datalist) return; 
+    
+    // Твій стандартний список предметів
+    const defaultSubjects = [
+        "Інж. програмне забесп.", 
+        "Програмування", 
+        "Пер. пристрої", 
+        "ОФЗ", 
+        "БЖД", 
+        "Фізичне виховання", 
+        "Захист інформації", 
+        "Архітектура", 
+        "Комп'ютерна схемотехніка", 
+        "Іноземна мова", 
+        "Web-технології"
+    ];
+
+    // Слухаємо базу відвідувань, щоб знайти всі назви пар
+    attendanceRef.on('value', (snap) => {
+        const data = snap.val();
+        
+        // Створюємо список, одразу закидаючи туди твої стандартні предмети
+        const uniqueSubjects = new Set(defaultSubjects);
+        
+        if (data) {
+            // Проходимо по базі: якщо ви вводили якісь НОВІ предмети, вони теж додадуться
+            Object.values(data).forEach(day => {
+                Object.keys(day).forEach(subjectName => {
+                    if (subjectName !== "Без назви") {
+                        uniqueSubjects.add(subjectName);
+                    }
+                });
+            });
+        }
+
+        // Очищаємо список в HTML і додаємо всі опції (вони будуть відсортовані за алфавітом)
+        datalist.innerHTML = "";
+        Array.from(uniqueSubjects).sort().forEach(sub => {
+            const option = document.createElement('option');
+            option.value = sub;
+            datalist.appendChild(option);
+        });
+    });
+}
+
+// Запускаємо функцію синхронізації списку пар
+syncSubjectsList();
