@@ -197,6 +197,15 @@ tr:hover td { background-color: rgba(255, 255, 255, 0.015); }
 .col-absent { width: 20%; text-align: center !important; }
 .col-actions { width: 20%; text-align: right !important; }
 
+/* === НОВИЙ БЛОК ДЛЯ КНОПКИ ЗНИЗУ === */
+.bottom-actions {
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    margin-top: -10px; /* Трохи підтягуємо до таблиці */
+    background: var(--card-bg);
+}
+
 /* Футер */
 .app-footer { text-align: center; color: var(--text-muted); font-size: 0.85rem; padding: 40px 0 20px 0; }
 
@@ -233,4 +242,13 @@ tr:hover td { background-color: rgba(255, 255, 255, 0.015); }
     .config-controls, .add-controls, .stats-controls { flex-direction: column; gap: 10px; }
     .config-controls input, .add-controls input { width: calc(100% - 32px); }
     th, td { padding: 10px 15px; font-size: 0.9rem; }
+    
+    /* Робимо нижню кнопку липкою на мобільних */
+    .bottom-actions {
+        position: sticky;
+        bottom: 15px;
+        z-index: 10;
+        box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+        border: 1px solid var(--primary); /* Додаємо легкий акцент */
+    }
 }
